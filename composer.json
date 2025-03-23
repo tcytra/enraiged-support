@@ -1,0 +1,32 @@
+{
+    "name": "tcytra/enraiged-support",
+    "description": "Enraiged Support is the support library required by various other Enraiged Laravel libraries.",
+    "keywords": ["enraiged", "support"],
+    "homepage": "https://github.com/tcytra/enraiged-support",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Todd Cytra",
+            "email": "tcytra@gmail.com"
+        }
+    ],
+    "require": {
+        "laravel/framework": "^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Enraiged\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Enraiged\\BlueprintServiceProvider",
+                "Enraiged\\SupportServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
