@@ -1,5 +1,12 @@
 # Release Notes
 
+2025-10-18 : 0.4.0-beta.4  
+Update: Added Enums system to enraiged-support
+
+- Correct duplicate use of the $item variable in Group construct
+
+---
+
 2025-10-16 : 0.4.0-beta.3  
 Update: Added initial basic menu builder system
 

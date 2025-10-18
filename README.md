@@ -1,6 +1,7 @@
 # Enraiged Support
 
-Enraiged Support is the support library required by various Enraiged Laravel projects.
+**Enraiged Support is the support library required by various Enraiged Laravel projects.**
+
 
 ## About Enraiged
 
@@ -11,6 +12,7 @@ functionality to simplify initial project set-up and readiness.
 
 The driving philosophy behind Enraiged is to **help, not hinder** the developer in getting a project from first install
 through to production.
+
 
 ## Install Enraiged Support
 
@@ -23,6 +25,7 @@ That said, you may use composer to manually install Enraiged Core into your Lara
 ```sh
 composer require tcytra/enraiged-support
 ```
+
 
 ## License
 
