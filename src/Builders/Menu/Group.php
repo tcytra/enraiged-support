@@ -14,19 +14,19 @@ class Group
     protected $label;
 
     /**
-     *  @param  array   $item
+     *  @param  array   $group
      *  @param  array   $keys
      */
-    public function __construct(array $item, array $keys)
+    public function __construct(array $group, array $keys)
     {
         $iteration = 0;
 
         if (count($keys)) {
             $this->key = implode('_', $keys);
-            $this->label = $item['label'];
+            $this->label = $group['label'];
         }
 
-        foreach ($item['items'] as $index => $item) {
+        foreach ($group['items'] as $index => $item) {
             $key = [...$keys, $iteration];
             $item['key'] = implode('_', $key);
 
