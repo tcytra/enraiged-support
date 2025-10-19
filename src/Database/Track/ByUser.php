@@ -5,10 +5,10 @@ namespace Enraiged\Database\Track;
 trait ByUser
 {
     /**
-     *  @param  User  $user
-     *  @return object|null
+     *  @param  \Enraiged\Users\Models\User  $user
+     *  @return array|null
      */
-    private function byUser($user): ?object
+    private function byUser($user): ?array
     {
         $model = config('auth.providers.users.model');
 

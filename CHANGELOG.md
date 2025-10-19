@@ -3,6 +3,7 @@
 2025-10-18 : 0.4.0-beta.4  
 Update: Added Enums system to enraiged-support
 
+- Correct database tracking calls to atTimestamp,byUser
 - Correct duplicate use of the $item variable in Group construct
 
 ---

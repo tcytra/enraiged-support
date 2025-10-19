@@ -6,9 +6,9 @@ trait AtTimestamp
 {
     /**
      *  @param  string  $value
-     *  @return object|null
+     *  @return array|null
      */
-    private function atTimestamp($value): ?object
+    private function atTimestamp($value): ?array
     {
         if ($value) {
             $timestamp = strtotime($value);
