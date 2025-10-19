@@ -1,10 +1,12 @@
 # Release Notes
 
 2025-10-19 : 0.4.0-beta.4  
-Update: Added Enums system to enraiged-support
+Update: Added Enums system; Various minor updates,fixes
 
+- Added Enums static method traits to enraiged-support
 - Correct database tracking calls to atTimestamp,byUser
 - Correct duplicate use of the $item variable in Group construct
+- Updated clean:storage,clean:temp for private app storage path
 
 ---
 

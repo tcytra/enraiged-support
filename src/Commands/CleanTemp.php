@@ -20,7 +20,7 @@ class CleanTemp extends Command
      */
     public function handle(): int
     {
-        $temp_path = storage_path('app/temp');
+        $temp_path = storage_path('app/private/temp');
 
         (new Filesystem)->cleanDirectory($temp_path, 'gitignore');
 

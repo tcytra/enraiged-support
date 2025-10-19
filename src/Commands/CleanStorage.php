@@ -14,7 +14,7 @@ class CleanStorage extends Command
     protected $description = 'Removes all files from the storage/app subdirectories (defined in config/enraiged/storage.php).';
 
     /** @var  string  The storage path prefix to prepend to each clearable directory. */
-    private $storage_path = 'app';
+    private $storage_path = 'app/private';
 
     /**
      *  Create an instance of the storage:clear console command.
