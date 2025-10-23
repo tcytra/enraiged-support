@@ -3,6 +3,7 @@
 2025-10-23 : 0.4.0-beta.5  
 Update: Prepared enraiged support for tables,forms
 
+- Added Enraiged\Collections\{Actions,Request,Route}Collection classes
 - Ported the enraiged-laravel assert/security traits to enraiged-support
 
  ---
