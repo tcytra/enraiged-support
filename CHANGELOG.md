@@ -1,5 +1,12 @@
 # Release Notes
 
+2025-10-23 : 0.4.0-beta.5  
+Update: Prepared enraiged support for tables,forms
+
+- Ported the enraiged-laravel assert/security traits to enraiged-support
+
+ ---
+
 2025-10-19 : 0.4.0-beta.4  
 Update: Added Enums system; Various minor updates,fixes
 
