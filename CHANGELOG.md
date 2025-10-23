@@ -4,6 +4,7 @@
 Update: Prepared enraiged support for tables,forms
 
 - Added Enraiged\Collections\{Actions,Request,Route}Collection classes
+- Ported the enraiged-laravel ParameterLoader,SelectOptions builder traits
 - Ported the enraiged-laravel assert/security traits to enraiged-support
 
  ---
