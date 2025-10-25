@@ -215,7 +215,8 @@ class ActionsCollection extends Collection
     }
 
     /**
-     *  
+     *  Add properties to the action route configuration.
+     *
      *  @param  string  $action
      *  @param  array   $parameters
      *  @param  string|null  $prefix = null

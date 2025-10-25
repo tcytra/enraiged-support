@@ -24,7 +24,6 @@ trait StaticMethods
     static function random(): self
     {
         $names = self::values();
-        //dd($names[array_rand($names)]);
 
         return self::from($names[array_rand($names)]);
     }
