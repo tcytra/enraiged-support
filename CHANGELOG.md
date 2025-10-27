@@ -1,5 +1,10 @@
 # Release Notes
 
+2025-10-27 : 0.4.0-beta.6  
+Update: Added selectable options to the enums static methods trait
+
+---
+
 2025-10-23 : 0.4.0-beta.5  
 Update: Prepared enraiged support for tables,forms
 

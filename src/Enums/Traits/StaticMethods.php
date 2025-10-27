@@ -17,6 +17,22 @@ trait StaticMethods
     }
 
     /**
+     *  Return a selectable array of enumerated options.
+     *
+     *  @return array
+     */
+    static function options(): array
+    {
+        return collect(self::cases())
+            ->transform(fn ($option)
+                => [
+                    'id' => $option->name,
+                    'name' => $option->value,
+                ])
+            ->toArray();
+    }
+
+    /**
      *  Return a randomly selected enum instance.
      *
      *  @return self
