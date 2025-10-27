@@ -1,7 +1,9 @@
-# Release Notes
+# Enraiged Support Release Notes
 
-2025-10-27 : 0.4.0-beta.6  
-Update: Added selectable options to the enums static methods trait
+2025-10-28 : 0.4.0-beta.6  
+Update: Improved MenuBuilder; Completed assertions; Added role handling
+
+- Added selectable options to the enums static methods trait
 
 ---
 

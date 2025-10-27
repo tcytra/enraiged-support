@@ -4,6 +4,8 @@ namespace Enraiged\Builders;
 
 class Menu
 {
+    use Secure\AssertSecure;
+
     /** @var  array  The menu items. */
     protected array $items = [];
 
@@ -16,9 +18,11 @@ class Menu
     public function __construct(array $menu)
     {
         if (key_exists('items', $menu)) {
-            $this->items = (new Menu\Group($menu, []))->items();
+            if ($this->assertSecure($menu)) {
+                $this->items = (new Menu\Group($menu, []))->items();
 
-            unset($menu['items']);
+                unset($menu['items']);
+            }
         }
 
         foreach ($menu as $index => $value) {

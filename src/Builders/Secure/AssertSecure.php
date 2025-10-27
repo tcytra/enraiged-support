@@ -6,6 +6,8 @@ use Illuminate\Support\Str;
 
 trait AssertSecure
 {
+    use AssertCondition, AuthAssertions, RoleAssertions;
+
     /**
      *  Determine whether or not a provided object is secure.
      *

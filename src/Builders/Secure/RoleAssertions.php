@@ -2,7 +2,7 @@
 
 namespace Enraiged\Builders\Secure;
 
-//use Enraiged\Enums\Roles;
+use App\Enums\Roles;
 use Illuminate\Support\Facades\Auth;
 
 trait RoleAssertions
@@ -14,9 +14,7 @@ trait RoleAssertions
      */
     protected function assertIsAdministrator(): bool
     {
-        //return Auth::check() && Auth::user()->role->is(Roles::Administrator);
-
-        return Auth::check();
+        return Auth::check() && Auth::user()->role->is(Roles::Administrator);
     }
 
     /**
@@ -27,12 +25,13 @@ trait RoleAssertions
      */
     protected function assertRoleAtLeast($secure): bool
     {
-        //$secure = (object) $secure;
-        //return Auth::check() && Auth::user()->hasRole()
-        //    ? Auth::user()->role->atLeast($secure->role)
-        //    : false;
+        $secure = (object) $secure;
 
-        return Auth::check();
+        $role = Roles::find($secure->role);
+
+        return Auth::check() && Auth::user()->role
+            ? Auth::user()->role->atLeast($role)
+            : false;
     }
 
     /**
@@ -43,13 +42,13 @@ trait RoleAssertions
      */
     protected function assertRoleIs($secure): bool
     {
-        //$secure = (object) $secure;
+        $secure = (object) $secure;
 
-        //return Auth::check() && Auth::user()->hasRole()
-        //    ? Auth::user()->role->is($secure->role)
-        //    : false;
+        $role = Roles::find($secure->role);
 
-        return Auth::check();
+        return Auth::check() && Auth::user()->role
+            ? Auth::user()->role->is($role)
+            : false;
     }
 
     /**
@@ -60,12 +59,12 @@ trait RoleAssertions
      */
     protected function assertRoleIsNot($secure): bool
     {
-        //$secure = (object) $secure;
+        $secure = (object) $secure;
 
-        //return Auth::check() && Auth::user()->hasRole()
-        //    ? Auth::user()->role->isNot($secure->role)
-        //    : false;
+        $role = Roles::find($secure->role);
 
-        return Auth::check();
+        return Auth::check() && Auth::user()->role
+            ? Auth::user()->role->isNot($role)
+            : false;
     }
 }

@@ -2,8 +2,13 @@
 
 namespace Enraiged\Builders\Menu;
 
+use Enraiged\Builders\Secure\AssertSecure;
+use Enraiged\Builders\Secure\RoleAssertions;
+
 class Group
 {
+    use AssertSecure, RoleAssertions;
+
     /** @var  array  The menu items in this group. */
     protected array $items = [];
 
@@ -27,14 +32,27 @@ class Group
         }
 
         foreach ($group['items'] as $index => $item) {
-            $key = [...$keys, $iteration];
-            $item['key'] = implode('_', $key);
+            if ($this->assertSecure($item)) {
+                $key = [...$keys, $iteration];
+                $item['key'] = implode('_', $key);
 
-            $this->items[$index] = key_exists('items', $item)
-                ? (new Group($item, $key))->get()
-                : (new Item($item))->get();
+                if (key_exists('items', $item)) {
+                    $new = (new Group($item, $key))->get();
 
-            $iteration++;
+                    if (count($new['items'])) {
+                        $this->items[$index] = $new;
+
+                        $iteration++;
+                    }
+
+                } else {
+                    $this->items[$index] = (new Item($item))->get();
+
+                    $iteration++;
+                }
+
+                $iteration++;
+            }
         }
     }
 
