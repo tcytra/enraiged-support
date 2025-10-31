@@ -2,6 +2,7 @@
 
 namespace Enraiged\Collections;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Collection;
 
@@ -23,8 +24,10 @@ class RouteCollection extends Collection
             if (array_keys($items)[0] === 0) {
                 //  ignore for sanity
             } else {
-                foreach ($items as $index => $value) {
-                    $this->{$index} = $value;
+                foreach ($this->items as $index => $value) {
+                    $this->items[$index] = $value instanceof Model
+                        ? $value->id
+                        : $value;
                 }
             }
         }
