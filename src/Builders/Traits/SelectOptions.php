@@ -24,17 +24,26 @@ trait SelectOptions
             return ['values' => $values];
         }
 
-        if ($source === 'api') { // todo: should api be the 'type' and not the 'source'? add a 'method' type?
-            $uri = preg_match('/\./', $config->uri)
-                ? $this->route($config->uri)
-                : $config->uri;
+        if (property_exists($config, 'route')) {
+            if (gettype($config->route) === 'string') {
+                $config->route = (object) ['name' => $config->route];
+            }
 
-            return collect($config)
-                ->merge([
-                    'uri' => $uri,
-                    'values' => [],
-                ])
-                ->toArray();
+            if (!property_exists($config->route, 'params')) {
+                $config->route->params = $this->request()->route()->hasParameters()
+                    ? $this->request()->route()->parameters()
+                    : [];
+            }
+
+            if (!property_exists($config->route, 'url')) {
+                $config->route->url = route(
+                    $config->route->name,
+                    $config->route->params,
+                    config('enraiged.app.absolute_uris')
+                );
+            }
+
+            $source = $config->source = 'api';
         }
 
         if ($select === true) {

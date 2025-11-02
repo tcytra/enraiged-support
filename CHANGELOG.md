@@ -1,9 +1,10 @@
 # Enraiged Support Release Notes
 
-2025-10-30 : 0.4.0-beta.6  
+2025-11-01 : 0.4.0-beta.6  
 Update: Improved MenuBuilder; Completed assertions; Added role handling
 
 - Added selectable options to the enums static methods trait
+- Completed route handling in the SelectOptions trait
 
 ---
 
