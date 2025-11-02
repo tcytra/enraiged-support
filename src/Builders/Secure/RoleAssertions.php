@@ -2,7 +2,7 @@
 
 namespace Enraiged\Builders\Secure;
 
-use App\Enums\Roles;
+use Enraiged\Users\Enums\Roles;
 use Illuminate\Support\Facades\Auth;
 
 trait RoleAssertions
@@ -14,7 +14,9 @@ trait RoleAssertions
      */
     protected function assertIsAdministrator(): bool
     {
-        return Auth::check() && Auth::user()->role->is(Roles::Administrator);
+        $roles = config('auth.providers.roles.enum', Roles::class);
+
+        return Auth::check() && Auth::user()->role->is($roles::Administrator);
     }
 
     /**
@@ -27,7 +29,8 @@ trait RoleAssertions
     {
         $secure = (object) $secure;
 
-        $role = Roles::find($secure->role);
+        $roles = config('auth.providers.roles.enum', Roles::class);
+        $role = $roles::find($secure->role);
 
         return Auth::check() && Auth::user()->role
             ? Auth::user()->role->atLeast($role)
@@ -44,7 +47,8 @@ trait RoleAssertions
     {
         $secure = (object) $secure;
 
-        $role = Roles::find($secure->role);
+        $roles = config('auth.providers.roles.enum', Roles::class);
+        $role = $roles::find($secure->role);
 
         return Auth::check() && Auth::user()->role
             ? Auth::user()->role->is($role)
@@ -61,7 +65,8 @@ trait RoleAssertions
     {
         $secure = (object) $secure;
 
-        $role = Roles::find($secure->role);
+        $roles = config('auth.providers.roles.enum', Roles::class);
+        $role = $roles::find($secure->role);
 
         return Auth::check() && Auth::user()->role
             ? Auth::user()->role->isNot($role)
