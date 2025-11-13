@@ -4,6 +4,7 @@
 Update: Improved MenuBuilder; Completed assertions; Added role handling
 
 - Added selectable options to the enums static methods trait
+- Added timezone support to the database tracking atTimestamp output
 - Completed route handling in the SelectOptions trait
 - Defer to the Roles enum defined in auth.providers.roles.enum config
 

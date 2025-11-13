@@ -2,6 +2,9 @@
 
 namespace Enraiged\Database\Track;
 
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 trait AtTimestamp
 {
     /**
@@ -11,13 +14,18 @@ trait AtTimestamp
     private function atTimestamp($value): ?array
     {
         if ($value) {
-            $timestamp = strtotime($value);
+            $timezone = Auth::check() && Auth::user()->timezone
+                ? Auth::user()->timezone
+                : config('enraiged.app.timezone');
+
+            $datetime = Carbon::parse($value)
+                ->timezone($timezone);
 
             return [
-                'date' => date('M j, Y', $timestamp),
-                'long' => date('l, F j, Y g:i a', $timestamp),
-                'time' => date('g:i a', $timestamp),
-                'timestamp' => $timestamp,
+                'date' => $datetime->format('M j, Y'),
+                'long' => $datetime->format('l, F j, Y g:i a'),
+                'time' => $datetime->format('g:i a'),
+                'timestamp' => strtotime($datetime->format('Y-m-d H:i:s')),
             ];
         }
 
