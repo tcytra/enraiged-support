@@ -95,14 +95,16 @@ class BlueprintServiceProvider extends ServiceProvider
     }
 
     /**
+     *  @param  bool    $nullable = true
+     *  @param  int     $precision = 0
      *  @return $this
      */
-    protected function track(): self
+    protected function track($nullable = true, $precision = 0): self
     {
         $model = config('auth.providers.users.model');
         $table = (new $model)->getTable();
 
-        Blueprint::macro('track', function ($name, $nullable = false, $precision = 0) use ($table) {
+        Blueprint::macro('track', function ($name) use ($nullable, $precision, $table) {
             if (gettype($name) === 'array') {
                 $columns = [];
 
@@ -153,11 +155,13 @@ class BlueprintServiceProvider extends ServiceProvider
     }
 
     /**
+     *  @param  bool    $nullable = true
+     *  @param  int     $precision = 0
      *  @return $this
      */
-    protected function trackAll(): self
+    protected function trackAll($nullable = true, $precision = 0): self
     {
-        Blueprint::macro('trackAll', function ($nullable = true, $precision = 0) {
+        Blueprint::macro('trackAll', function () use ($nullable, $precision) {
             $this->track(['created', 'deleted', 'updated'], $nullable, $precision);
         });
 
@@ -165,11 +169,13 @@ class BlueprintServiceProvider extends ServiceProvider
     }
 
     /**
+     *  @param  bool    $nullable = true
+     *  @param  int     $precision = 0
      *  @return $this
      */
-    protected function trackCreated(): self
+    protected function trackCreated($nullable = true, $precision = 0): self
     {
-        Blueprint::macro('trackCreated', function ($nullable = true, $precision = 0) {
+        Blueprint::macro('trackCreated', function () use ($nullable, $precision) {
             $this->track('created', $nullable, $precision);
         });
 
@@ -177,11 +183,13 @@ class BlueprintServiceProvider extends ServiceProvider
     }
 
     /**
+     *  @param  bool    $nullable = true
+     *  @param  int     $precision = 0
      *  @return $this
      */
-    protected function trackDeleted(): self
+    protected function trackDeleted($nullable = true, $precision = 0): self
     {
-        Blueprint::macro('trackDeleted', function ($nullable = true, $precision = 0) {
+        Blueprint::macro('trackDeleted', function () use ($nullable, $precision) {
             $this->track('deleted', $nullable, $precision);
         });
 
@@ -189,11 +197,13 @@ class BlueprintServiceProvider extends ServiceProvider
     }
 
     /**
+     *  @param  bool    $nullable = true
+     *  @param  int     $precision = 0
      *  @return $this
      */
-    protected function trackUpdated(): self
+    protected function trackUpdated($nullable = true, $precision = 0): self
     {
-        Blueprint::macro('trackUpdated', function ($nullable = true, $precision = 0) {
+        Blueprint::macro('trackUpdated', function () use ($nullable, $precision) {
             $this->track('updated', $nullable, $precision);
         });
 
