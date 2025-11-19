@@ -1,11 +1,13 @@
 # Enraiged Support Release Notes
 
-2025-11-01 : 0.4.0-beta.6  
+2025-11-19 : 0.4.0-beta.6  
 Update: Improved MenuBuilder; Completed assertions; Added role handling
 
 - Added selectable options to the enums static methods trait
 - Added timezone support to the database tracking atTimestamp output
 - Completed route handling in the SelectOptions trait
+- Corrected enum id,name order in the StaticMethods options method
+- Corrected the argument handling of the database tracking macros
 - Defer to the Roles enum defined in auth.providers.roles.enum config
 
 ---
