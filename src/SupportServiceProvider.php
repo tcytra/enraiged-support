@@ -14,8 +14,8 @@ class SupportServiceProvider extends ServiceProvider
     public function register()
     {
         $this->commands([
-            Commands\CleanStorage::class,
-            Commands\CleanTemp::class,
+            Commands\ClearStorage::class,
+            Commands\ClearTemp::class,
         ]);
     }
 }

@@ -75,7 +75,7 @@ class Filesystem extends IlluminateFilesystem
      *  @param  mixed   $exceptions
      *  @return bool
      */
-    public function cleanDirectory($directory, $exceptions = null)
+    public function clearDirectory($directory, $exceptions = null)
     {
         return $this->deleteDirectory($directory, true, $exceptions);
     }

@@ -5,16 +5,16 @@ namespace Enraiged\Commands;
 use Enraiged\Filesystem\Filesystem;
 use Illuminate\Console\Command;
 
-class CleanStorage extends Command
+class ClearStorage extends Command
 {
     /** @var  string  The name and signature of the console command. */
-    protected $signature = 'clean:storage';
+    protected $signature = 'storage:clear';
 
     /** @var  string  The console command description. */
     protected $description = 'Removes all files from the storage/app subdirectories (defined in config/enraiged/storage.php).';
 
-    /** @var  string  The storage path prefix to prepend to each clearable directory. */
-    private $storage_path = 'app/private';
+    /** @var  string  The storage root path prefix to prepend to each clearable directory. */
+    private $storage_root = 'app/private';
 
     /**
      *  Create an instance of the storage:clear console command.
@@ -25,7 +25,7 @@ class CleanStorage extends Command
     {
         parent::__construct();
 
-        $this->storage_path = trim($this->storage_path, '/');
+        $this->storage_root = trim($this->storage_root, '/');
     }
 
     /**
@@ -41,11 +41,11 @@ class CleanStorage extends Command
         }
 
         foreach (config('enraiged.storage.clear') as $each) {
-            $storage_path = storage_path("{$this->storage_path}/{$each}");
+            $storage_path = storage_path("{$this->storage_root}/{$each}");
 
             !is_dir($storage_path)
                 || (new Filesystem)
-                    ->cleanDirectory($storage_path, 'gitignore');
+                    ->clearDirectory($storage_path, 'gitignore');
         }
 
         $this->info('Successfully cleared storage directories.');
