@@ -5,6 +5,22 @@ namespace Enraiged\Enums\Traits;
 trait StaticMethods
 {
     /**
+     *  Return a selectable array of enumerated options.
+     *
+     *  @return array
+     */
+    static function associative(): array
+    {
+        $associative = [];
+
+        foreach (self::cases() as $each) {
+            $associative[$each->name] = $each->value;
+        }
+
+        return $associative;
+    }
+
+    /**
      *  Return an array of the enum case names.
      *
      *  @return array

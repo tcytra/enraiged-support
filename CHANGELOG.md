@@ -1,8 +1,9 @@
 # Enraiged Support Release Notes
 
-2025-11-26 : 0.4.0-beta.6  
+2025-11-27 : 0.4.0-beta.6  
 Update: Improved MenuBuilder; Completed assertions; Added role handling
 
+- Add associative method to the Enums\StaticMethods support trait
 - Added selectable options to the enums static methods trait
 - Added timezone support to the database tracking atTimestamp output
 - Completed route handling in the SelectOptions trait
