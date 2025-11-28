@@ -26,8 +26,8 @@ trait StaticMethods
         return collect(self::cases())
             ->transform(fn ($option)
                 => [
-                    'id' => $option->value,
-                    'name' => $option->name,
+                    'id' => $option->name,
+                    'name' => $option->value,
                 ])
             ->toArray();
     }
