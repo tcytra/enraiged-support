@@ -1,5 +1,13 @@
 # Enraiged Support Release Notes
 
+2026-04-16 : 0.4.0-rc.1  
+Minor: Updated composer to allow laravel/framework v12 or v13
+
+- Ensure backwards compatibility reading select options from enums
+- Improved the ActionsCollection; Easier to implement across models
+
+---
+
 2025-11-27 : 0.4.0-beta.6  
 Update: Improved MenuBuilder; Completed assertions; Added role handling
 
