@@ -61,7 +61,9 @@ trait SelectOptions
 
             if ($config->type === 'enum') {
                 if ($source) {
-                    $values = $source::select();
+                    $values = method_exists($source, 'select') // for backward compatibility, options is preferred
+                        ? $source::select()
+                        : $source::options();
                 } else {
                     logger("An enum source was not provided for the {$source} options", collect($config)->toArray());
                 }
