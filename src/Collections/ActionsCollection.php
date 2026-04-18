@@ -6,6 +6,7 @@ use Enraiged\Builders\Secure\AssertSecure;
 use Enraiged\Collections\RequestCollection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 
 class ActionsCollection extends Collection
@@ -22,23 +23,7 @@ class ActionsCollection extends Collection
     protected string $prefix;
 
     /** @var  string  The template json file path. */
-    protected string $template;
-
-    /**
-     *  Create a new actions collection.
-     *
-     *  @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>|null  $items
-     */
-    public function __construct($items = [])
-    {
-        $this->prefix = preg_replace('/\.$/', '', $this->prefix);
-
-        if ($this->template) {
-            $this->items = $this->getArrayableItems(
-                $this->assembleActionsFromTemplate($items)
-            );
-        }
-    }
+    protected string $template = __DIR__.'/Templates/model-actions.json';
 
     /**
      *  Configure the routing for the collected actions.
@@ -50,6 +35,8 @@ class ActionsCollection extends Collection
      */
     public function asRoutableActions(RequestCollection $request, ?Model $model = null, ?string $prefix = null)
     {
+        $this->assembleActionsFromTemplate();
+
         $actions = [];
 
         $model = $model ?: $this->model;
@@ -70,8 +57,6 @@ class ActionsCollection extends Collection
 
             if ($permission && Route::has($route)) {
                 $route = Route::getRoutes()->getByName($route);
-
-                $parameters['route']['uri'] = $route->uri;
 
                 preg_match('/\{[a-z]+\}/', $route->uri, $matches);
 
@@ -112,11 +97,13 @@ class ActionsCollection extends Collection
     /**
      *  Assemble the actions from a filesystem template.
      *
-     *  @param  array   $items
-     *  @return array
+     *  @return void
      */
-    public function assembleActionsFromTemplate($items): array
+    protected function assembleActionsFromTemplate(): void
     {
+        $model = str_replace('_', '', Str::snake(class_basename($this->model)));
+        $items = $this->items;
+
         foreach ($items as $action => $properties) {
             if (!is_array($properties)) {
                 $items[$action] = ['class' => $properties];
@@ -126,7 +113,15 @@ class ActionsCollection extends Collection
         $keys = array_keys($items);
         $template = json_decode(file_get_contents($this->template), true);
 
-        $actions = array_filter($template, fn ($item) => in_array($item, $keys), ARRAY_FILTER_USE_KEY);
+        $actions = collect(array_filter($template, fn ($item) => in_array($item, $keys), ARRAY_FILTER_USE_KEY))
+            ->transform(fn ($item) =>
+                collect($item)
+                    ->transform(fn ($property)
+                        => is_array($property)
+                            ? $property
+                            : __($property, ['model' => $model]))
+                    ->toArray())
+            ->toArray();
 
         foreach ($items as $action => $properties) {
             $items[$action] = [
@@ -135,7 +130,7 @@ class ActionsCollection extends Collection
             ];
         }
 
-        return $items;
+        $this->items = $items;
     }
 
     /**
@@ -240,5 +235,22 @@ class ActionsCollection extends Collection
         }
 
         return $parameters;
+    }
+
+    /**
+     *  Set or get the routing prefix.
+     *
+     *  @param  string  $prefix
+     *  @return string|$this
+     */
+    public function prefix(string $prefix)
+    {
+        if ($prefix) {
+            $this->prefix = preg_replace('/\.$/', '', $prefix);
+
+            return $this;
+        }
+
+        return $this->prefix;
     }
 }

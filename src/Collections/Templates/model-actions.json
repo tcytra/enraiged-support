@@ -1,0 +1,40 @@
+{
+    "create": {
+        "icon": "pi pi-plus",
+        "label": "Create :Model",
+        "severity": "success",
+        "tooltip": "Create :model"
+    },
+    "show": {
+        "icon": "pi pi-eye",
+        "label": "Show",
+        "severity": "info",
+        "tooltip": "Show :model"
+    },
+    "edit": {
+        "icon": "pi pi-pencil",
+        "label": "Edit",
+        "severity": "warn",
+        "tooltip": "Edit :model"
+    },
+    "delete": {
+        "confirm": "Are you sure you want to delete this :model?",
+        "icon": "pi pi-trash",
+        "label": "Delete",
+        "route": {
+            "method": "delete"
+        },
+        "severity": "danger",
+        "tooltip": "Delete :model"
+    },
+    "restore": {
+        "confirm": "Are you sure you want to restore this :model?",
+        "icon": "pi pi-trash",
+        "label": "Restore",
+        "route": {
+            "method": "patch"
+        },
+        "severity": "success",
+        "tooltip": "Restore :model"
+    }
+}
