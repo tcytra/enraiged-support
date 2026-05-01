@@ -1,5 +1,10 @@
 # Enraiged Support Release Notes
 
+2026-05-01 : 0.4.0  
+Update: Stable release 0.4.0
+
+---
+
 2026-04-16 : 0.4.0-rc.1  
 Minor: Updated composer to allow laravel/framework v12 or v13
 
