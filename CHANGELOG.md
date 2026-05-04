@@ -1,5 +1,10 @@
 # Enraiged Support Release Notes
 
+2026-05-04 : 0.4.0.1  
+Update: Added addRouteParameter method to the RequestCollection
+
+---
+
 2026-05-01 : 0.4.0  
 Update: Stable release 0.4.0
 

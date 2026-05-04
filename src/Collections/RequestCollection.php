@@ -18,6 +18,20 @@ class RequestCollection extends Collection
     protected $user;
 
     /**
+     *  Add a parameter to the route collection.
+     *
+     *  @param  array   $parameter
+     *  @return self
+     */
+    public function addRouteParameter(array $parameter): self
+    {
+        $this->route = $this->route
+            ->merge($parameter);
+
+        return $this;
+    }
+
+    /**
      *  @return \Enraiged\Collections\RouteCollection
      */
     public function route(): RouteCollection
