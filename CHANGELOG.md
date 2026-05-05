@@ -1,5 +1,10 @@
 # Enraiged Support Release Notes
 
+2026-05-05 : 0.4.0.2  
+Update: Allow for custom route action prefix in ActionsCollection
+
+---
+
 2026-05-04 : 0.4.0.1  
 Update: Added addRouteParameter method to the RequestCollection
 

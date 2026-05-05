@@ -219,6 +219,7 @@ class ActionsCollection extends Collection
      */
     protected function populateActionRoute($action, $parameters, $prefix = null): array
     {
+        $action = key_exists('action', $parameters) ? $parameters['action'] : $action;
         $prefix = $prefix ?: $this->prefix;
 
         if (!key_exists('route', $parameters)) {
